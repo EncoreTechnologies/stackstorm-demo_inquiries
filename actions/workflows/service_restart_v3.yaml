@@ -28,7 +28,7 @@ demo_inquiries.service_restart_v3:
     duo_2fa:
       action: duo.auth_auth
       input:
-        username: "{{ _.username }}"
+        username: "{{ _.duo_username }}"
         factor: passcode
         passcode: "{{ task('inquiry_2fa').result.response.secondfactor }}"
       on-success:
