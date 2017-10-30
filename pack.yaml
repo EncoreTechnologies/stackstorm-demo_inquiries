@@ -1,0 +1,9 @@
+---
+ref: demo_inquiries
+name: demo_inquiries
+description: Pack demonstrating the inquiries feature in StackStorm 2.5
+keywords: 
+    - inquiries
+version: 0.1.0
+author: Encore Technologies
+email: code@encore.tech
