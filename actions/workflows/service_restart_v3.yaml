@@ -32,7 +32,7 @@ demo_inquiries.service_restart_v3:
         factor: passcode
         passcode: "{{ task('inquiry_2fa').result.response.secondfactor }}"
       on-success:
-        - service-restart
+        - service_restart
               
     service_restart:
       action: core.local_sudo
