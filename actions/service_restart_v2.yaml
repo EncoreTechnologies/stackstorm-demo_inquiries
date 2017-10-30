@@ -1,0 +1,12 @@
+---
+description: "Restarts a service on the system (with a hard coded 2FA check)"
+enabled: true
+runner_type: "mistral-v2"
+entry_point: workflows/service_restart_v2.yaml
+name: service_restart_v2
+pack: demo_inquiries
+parameters:
+  service:
+    type: string
+    description: "Name of the service to restart."
+    required: true
