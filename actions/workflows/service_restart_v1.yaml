@@ -1,0 +1,19 @@
+version: '2.0'
+
+demo_inquiries.service_restart_v1:
+  description: Restarts a service on the system (without 2FA)
+  type: direct
+  input:
+    - service
+
+  output:
+    result: "{{ _.result }}"
+    
+  tasks:
+    
+    service_restart:
+      action: core.local
+      input:
+        cmd: "systemctl restart {{ _.service }}"
+      publish:
+        result: "{{ task('service_restart').result }}"
