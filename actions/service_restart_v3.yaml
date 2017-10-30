@@ -10,7 +10,3 @@ parameters:
     type: string
     description: "Name of the service to restart."
     required: true
-  duo_username:
-    type: string
-    description: "Duo username to use for 2FA."
-    required: true
