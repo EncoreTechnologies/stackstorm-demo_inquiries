@@ -1,10 +1,11 @@
 version: '2.0'
 
-demo_inquiries.service_restart_v2:
-  description: Restarts a service on the system (with hard coded 2FA)
+demo_inquiries.service_restart_v3:
+  description: Restarts a service on the system (with duo integrated 2FA)
   type: direct
   input:
     - service
+    - duo_username
 
   output:
     result: "{{ _.result }}"
@@ -22,7 +23,16 @@ demo_inquiries.service_restart_v2:
                description: "Please enter second factor for restarting the '{{ _.service }}' service"
                required: True
        on-success:
-         - service_restart: "{{ task('inquiry_2fa').result.response.secondfactor == 'approved' }}"
+         - duo_2fa
+
+    duo_2fa:
+      action: duo.auth_auth
+      input:
+        username: "{{ _.username }}"
+        factor: passcode
+        passcode: "{{ task('inquiry_2fa').result.response.secondfactor }}"
+      on-success:
+        - service-restart
               
     service_restart:
       action: core.local_sudo

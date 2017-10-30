@@ -1,0 +1,16 @@
+---
+description: "Restarts a service on the system (with duo integrated 2FA)"
+enabled: true
+runner_type: "mistral-v2"
+entry_point: workflows/service_restart_v3.yaml
+name: service_restart_v3
+pack: demo_inquiries
+parameters:
+  service:
+    type: string
+    description: "Name of the service to restart."
+    required: true
+  duo_username:
+    type: string
+    description: "Duo username to use for 2FA."
+    required: true
