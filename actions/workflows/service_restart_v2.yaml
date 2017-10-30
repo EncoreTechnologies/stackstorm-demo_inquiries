@@ -19,10 +19,10 @@ demo_inquiries.service_restart_v2:
            properties:
              secondfactor:
                type: string
-               description: Please enter second factor for authenticating to "foo" service
+               description: "Please enter second factor for restarting the '{{ _.service }}' service"
                required: True
        on-success:
-         - service_restart: "{{ task('inquiry_2fa').result.secondfactor == 'approved' }}"
+         - service_restart: "{{ task('inquiry_2fa').result.response.secondfactor == 'approved' }}"
               
     service_restart:
       action: core.local_sudo
